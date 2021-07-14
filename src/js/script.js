@@ -118,6 +118,7 @@
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
     }
 
     initAccordion() {
@@ -177,8 +178,25 @@
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
           console.log(optionId, option);
+
+          //Create constant for selected option
+          const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
+          //Find the image of the class 'paramId-optionId' in div with images
+
+          const optionImage = thisProduct.imageWrapper.querySelector(!param.label.includes(' ') && '.' + paramId + '-' + optionId);
+
+          //Check if it is found
+          if (optionImage) {
+          //If yes --> check if the option is selected, if yes --> show the image
+            if(optionSelected) {
+              optionImage.classList.add(classNames.menuProduct.imageVisible);
+            //if not selected --> hide the image
+            } else {
+              optionImage.classList.remove(classNames.menuProduct.imageVisible);
+            }   
+          }
           // check if there is param of the category (paramId) in the form (formData) and includes optionId...
-          if (formData[paramId] && formData[paramId].includes(optionId)) {
+          if (optionSelected) {
           //...if selected --> check if it is default option, if not: increase price according to component's value
             if (!option.default === true) {
               price += option.price;
