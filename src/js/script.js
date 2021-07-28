@@ -1,7 +1,7 @@
 /* global Handlebars, utils, dataSource */ // eslint-disable-line no-unused-vars
 {
   'use strict';
-
+  // start
   const select = {
     templateOf: {
       menuProduct: '#template-menu-product',
