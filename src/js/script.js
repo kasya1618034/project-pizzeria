@@ -380,7 +380,7 @@
       thisCart.dom.form.addEventListener('submit', function(event) {
         event.preventDefault();
         thisCart.sendOrder();
-      })
+      });
     }
 
     add(menuProduct) {
@@ -533,7 +533,7 @@
         priceSingle: thisCartProduct.priceSingle,
         name: thisCartProduct.name,
         params: thisCartProduct.params,
-      }
+      };
       return orderedProducts;
     }
   }
